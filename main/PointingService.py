@@ -3,7 +3,7 @@ from math import floor
 import requests
 from sqlalchemy import func
 
-avg_last_month_distance_customers = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+avg_last_month_distance_customers = [1000 for i in range(12)]
 number_of_users = 0
 last_month = 0
 

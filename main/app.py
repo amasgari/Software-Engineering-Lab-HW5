@@ -2,7 +2,7 @@ import base64
 import datetime
 
 import flask
-import form as form
+# import form as form
 from flask import Flask, render_template
 from flask import jsonify
 from flask import request
@@ -15,11 +15,11 @@ from flask_jwt_extended import JWTManager
 import sqlalchemy as db
 from sqlalchemy.orm import Session
 
-from main import models
-from main.PointitngService import pointing
-from main.event_model import Riding
-from main.haversine import haversine
-from main.models import Customer, Bike, Ride
+import models
+from PointingService import pointing
+from event_model import Riding
+from haversine import haversine
+from models import Customer, Bike, Ride
 
 from rq import Queue
 from rq.job import Job
@@ -27,7 +27,7 @@ from rq.job import Job
 from sqlalchemy import Date, func
 import requests
 
-from main.worker import conn
+from worker import conn
 
 Base = models.Base
 
@@ -68,7 +68,7 @@ def index():
         else:
             return "Error"
     elif request.method == 'GET':
-        return render_template('index.html', form=form)
+        return render_template('index.html', form=request.form)
 
     return render_template("index.html")
 
@@ -280,4 +280,8 @@ def endRide():
 
 if __name__ == "__main__":
     # make_bikes()
+    # session = Session(engine)
+    # q = session.query(Bike).all()
+    # print(f'bike {q}')
+    # session.close()
     app.run()
